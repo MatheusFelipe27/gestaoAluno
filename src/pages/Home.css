@@ -1,0 +1,67 @@
+.initialButton{
+    background-color: blue;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    font-size: 20px;
+    margin: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transform: scale(0.9);
+}
+
+.initialButton:hover{
+    transform: scale(1);
+}
+
+.cad{
+    background-color: blue;
+    color: white;
+    width: 59.5%;
+}
+
+.table{
+    margin: 10px;
+    padding: 10px;
+    border-collapse: collapse;
+
+}
+
+th, td{
+    border: solid;
+    border-color: lightgray;
+    padding: 25px;
+    text-align: center;
+}
+
+.changeButton{
+    padding: 10px;
+    margin: 3px;
+    border-radius: 3px;
+    border: none;
+    background-color: yellow;
+    transform: scale(0.9);
+    cursor: pointer;
+}
+
+.changeButton:hover{
+    transform: scale(1);
+}
+
+.deletedButton{
+    padding: 10px;
+    margin: 3px;
+    border-radius: 3px;
+    border: none;
+    background-color: red;
+    color: white;
+    transform: scale(0.9);
+    cursor: pointer;
+}
+
+.deletedButton:hover{
+    transform: scale(1);
+}
+
+
+

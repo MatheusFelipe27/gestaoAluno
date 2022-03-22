@@ -1,0 +1,73 @@
+.deleteDiv{
+    margin: 50px;
+}
+
+.deleteH2{
+    background-color: red;
+    height: 50px;
+    text-align: center;
+    width: 1000px;
+    margin-left: 85px;
+    padding-top: 10px;
+}
+
+.deleteContainer{
+    height: 450px;
+    width: 1000px;
+    margin-left: 85px;
+    background-color: lightgray;
+}
+
+.deleteForm{
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+
+.deleteInput{
+    margin: 20px;
+    border:  none;
+    outline: none;
+    height: 25px;
+    width: 50%;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+.deleteSubmit{
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    transform: scale(0.9);
+    background-color: red;
+    color: white;
+}
+
+.deleteSubmit:hover{
+    transform: scale(1);
+}
+
+.deleteLabel{
+    display: flex;
+    flex-direction: column;
+}
+
+.deleteButton{
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    transform: scale(0.9);
+    background-color: rgb(106, 166, 185);
+    color: white;
+
+}
+
+.deleteButton:hover{
+    transform: scale(1);
+}

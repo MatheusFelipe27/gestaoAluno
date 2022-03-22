@@ -1,0 +1,73 @@
+.registerDiv{
+    margin: 50px;
+}
+
+.registerH2{
+    background-color: rgb(8, 8, 216);
+    height: 50px;
+    text-align: center;
+    width: 1000px;
+    margin-left: 85px;
+    padding-top: 10px;
+}
+
+.registerContainer{
+    height: 400px;
+    width: 1000px;
+    margin-left: 85px;
+    background-color: lightgray;
+}
+
+.registerForm{
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+
+.registerInput{
+    margin: 20px;
+    border:  none;
+    outline: none;
+    height: 25px;
+    width: 50%;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+.registerSubmit{
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    transform: scale(0.9);
+    background-color: blue;
+    color:white
+}
+
+.registerSubmit:hover{
+    transform: scale(1);
+}
+
+.registerLabel{
+    display: flex;
+    flex-direction: column;
+}
+
+.registerButton{
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    transform: scale(0.9);
+    background-color: rgb(106, 166, 185);
+    color: white;
+
+}
+
+.registerButton:hover{
+    transform: scale(1);
+}
