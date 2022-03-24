@@ -32,6 +32,15 @@
     width: 50%;
     border-radius: 5px;
     padding: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
 
 }
 

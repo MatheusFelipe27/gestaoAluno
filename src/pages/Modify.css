@@ -15,7 +15,7 @@
     height: 450px;
     width: 1000px;
     margin-left: 85px;
-    background-color: lightgray;
+    background-color: whitesmoke;
 }
 
 .modifyForm{
@@ -32,6 +32,8 @@
     width: 50%;
     border-radius: 5px;
     padding: 10px;
+    background-color: lightgray;
+    color: black;
 
 }
 

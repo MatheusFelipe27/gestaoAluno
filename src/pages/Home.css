@@ -29,7 +29,7 @@
 
 th, td{
     border: solid;
-    border-color: lightgray;
+    border-color: transparent;
     padding: 25px;
     text-align: center;
 }

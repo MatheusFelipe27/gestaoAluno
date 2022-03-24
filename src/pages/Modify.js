@@ -1,8 +1,77 @@
-import React from "react";
+import {React, useContext, useState} from "react";
 import { Link } from "react-router-dom";
+import { AlunoContext } from "../App";
 import './Modify.css'
 
+var modificarAluno = {
+    matricula: "",
+    nome: "",
+    cpf: -1,
+    avaliacao: -1
+};
+
 function Modify(){
+    const {alunos, id, setId, setAlunos} = useContext(AlunoContext);
+    //console.log(alunos[id-1].nome)
+    const [nomeAluno, setNomeAluno] = useState(alunos[id-1].nome);
+   // console.log(alunos[id-1].nome)
+    const [cpfAluno, setCpfAluno] = useState(alunos[id-1].cpf);
+    const [avaliacaoAluno, setAvaliacaoAluno] = useState(alunos[id-1].avaliacao);
+
+    function checarTamanho(checarAqui){
+        checarAqui = false
+        console.log(checarAqui)
+        if(nomeAluno.length<6 || nomeAluno.length>40){
+            checarAqui = true
+            console.log(checarAqui)
+        }     
+        else if( cpfAluno.length!==11){ 
+            checarAqui = true
+            console.log(checarAqui)
+        }    
+        else if(avaliacaoAluno<0 || avaliacaoAluno>10){
+            checarAqui = true
+            console.log(checarAqui)
+        }    
+        console.log(nomeAluno)
+        console.log(cpfAluno)
+        console.log(avaliacaoAluno)
+        console.log(checarAqui)
+        return checarAqui
+    }
+    
+    function modificarPosicao (){
+        var arrayModificado = alunos;
+        console.log("entrei")
+        console.log(arrayModificado)
+        var passou = false;
+        for(var i=0; i<arrayModificado.length; i++){
+            if(arrayModificado[i].matricula === id){
+                modificarAluno.matricula = `${id}`;
+                modificarAluno.nome = nomeAluno;
+                modificarAluno.cpf = cpfAluno;
+                modificarAluno.avaliacao = avaliacaoAluno;
+                arrayModificado[i]= modificarAluno
+                passou=true
+            }
+            if(passou) break       
+        }
+        return arrayModificado
+    }
+
+    const modificar = () =>{
+        var boolean = false
+        var condicao = checarTamanho(boolean)
+        console.log(condicao)
+        if(!condicao){
+            setAlunos(modificarPosicao)
+            setId(null);
+            setNomeAluno("")
+            setCpfAluno(-1)
+            setAvaliacaoAluno(-1)
+        }     
+    }
+
     return(
         <div>
             <div className="modifyDiv">
@@ -10,24 +79,31 @@ function Modify(){
                 <div className="modifyContainer">
                     <form className="modifyForm">  
                         <label className="modifyLabel">
-                            Avaliação
-                            <input className="modifyInput" type="text" disabled />
+                            Matricula
+                            <input className="modifyInput" type="text" value={id} disabled />
                         </label>
                         <label className="modifyLabel">
                             Nome
-                            <input className="modifyInput" type="text" />
+                            <input className="modifyInput" type="text" value={nomeAluno} 
+                                onChange={(e)=> setNomeAluno(e.target.value)}/>
                         </label>
                         <label className="modifyLabel">
                             CPF
-                            <input className="modifyInput" type="text" />
+                            <input className="modifyInput" type="number" value={cpfAluno}
+                                onChange={(e) => setCpfAluno(e.target.value)} />
                         </label>
                         <label className="modifyLabel">
                             Avaliação
-                            <input className="modifyInput" type="text"/>
+                            <input className="modifyInput" type="number" value={avaliacaoAluno}
+                                onChange={(e) => setAvaliacaoAluno(e.target.value)} />
                         </label>
-                        <input className="modifySubmit" type="submit" value="ALTERAR" />
+                        <Link to="/">
+                        <input className="modifySubmit" type="submit" value="ALTERAR"
+                            onClick={modificar} />
+                        </Link>
                         <Link to ="/">
-                            <button className="modifyButton"> VOLTAR</button>
+                            <button className="modifyButton"
+                                onClick={() => setId(null)}> VOLTAR</button>
                         </Link>
                     </form>
                 </div>
