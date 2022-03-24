@@ -6,17 +6,18 @@ import './Modify.css'
 var modificarAluno = {
     matricula: "",
     nome: "",
-    cpf: -1,
+    cpf: "",
     avaliacao: -1
 };
 
 function Modify(){
     const {alunos, id, setId, setAlunos} = useContext(AlunoContext);
     //console.log(alunos[id-1].nome)
-    const [nomeAluno, setNomeAluno] = useState(alunos[id-1].nome);
+    const{nome, cpf, avaliacao} = alunos.find(aluno => aluno.id=== id)
+    const [nomeAluno, setNomeAluno] = useState(nome);
    // console.log(alunos[id-1].nome)
-    const [cpfAluno, setCpfAluno] = useState(alunos[id-1].cpf);
-    const [avaliacaoAluno, setAvaliacaoAluno] = useState(alunos[id-1].avaliacao);
+    const [cpfAluno, setCpfAluno] = useState(cpf);
+    const [avaliacaoAluno, setAvaliacaoAluno] = useState(avaliacao);
 
     function checarTamanho(checarAqui){
         checarAqui = false
@@ -41,7 +42,7 @@ function Modify(){
     }
     
     function modificarPosicao (){
-        var arrayModificado = alunos;
+        var arrayModificado = alunos.map(aluno => aluno);
         console.log("entrei")
         console.log(arrayModificado)
         var passou = false;
@@ -50,11 +51,11 @@ function Modify(){
                 modificarAluno.matricula = `${id}`;
                 modificarAluno.nome = nomeAluno;
                 modificarAluno.cpf = cpfAluno;
-                modificarAluno.avaliacao = avaliacaoAluno;
+                modificarAluno.avaliacao = +avaliacaoAluno;
                 arrayModificado[i]= modificarAluno
                 passou=true
             }
-            if(passou) break       
+            if(passou) break
         }
         return arrayModificado
     }
@@ -62,12 +63,12 @@ function Modify(){
     const modificar = () =>{
         var boolean = false
         var condicao = checarTamanho(boolean)
-        console.log(condicao)
+        console.log("estou em modificar")
         if(!condicao){
-            setAlunos(modificarPosicao)
+            setAlunos(modificarPosicao())
             setId(null);
             setNomeAluno("")
-            setCpfAluno(-1)
+            setCpfAluno("")
             setAvaliacaoAluno(-1)
         }     
     }

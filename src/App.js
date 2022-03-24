@@ -13,32 +13,32 @@ const initial = [
   {
       matricula: '1',
       nome: 'Matheus',
-      cpf: 12345678901,
+      cpf: '12345678901',
       avaliacao: 10 
   },
 
   {
       matricula: '2',
       nome: 'Meredith',
-      cpf: 12345678902,
+      cpf: '12345678902',
       avaliacao: 5
   },
   {
       matricula: '3',
       nome: 'Macaule',
-      cpf: 12345678903,
+      cpf: '12345678903',
       avaliacao: 10
   },
   {
       matricula: '4',
       nome: 'Natalia',
-      cpf: 12345678904,
+      cpf: '12345678904',
       avaliacao: 7
   },
   {
       matricula: '5',
       nome: 'Thiago',
-      cpf: 12345678905,
+      cpf: '12345678905',
       avaliacao: 8
   }
 ]
@@ -69,7 +69,7 @@ function App() {
             <Route path = "/deletar" element = {<Delete/>} />
           </Routes>
         </Router>  
-      </div>]
+      </div>
     </AlunoContext.Provider>  
   );
 }
