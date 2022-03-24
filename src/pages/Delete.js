@@ -1,31 +1,31 @@
-import {React, useContext}  from "react";
+import { React, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AlunoContext } from "../App";
 import './Delete.css'
 
-function Delete(){
-    const {alunos, id, setId, setAlunos}= useContext(AlunoContext);
+function Delete() {
+    const { alunos, id, setId, setAlunos } = useContext(AlunoContext);
 
-    const {nome, cpf, avaliacao} = alunos.find(aluno => aluno.matricula===id)
+    const { nome, cpf, avaliacao } = alunos.find(aluno => aluno.matricula === id)
 
-    const deleteAluno = () =>{
+    const deleteAluno = () => {
         setAlunos(alunos.filter(aluno => aluno.matricula !== id))
         setId(null)
     }
 
-    return(
+    return (
         <div>
             <div className="deleteDiv">
                 <h2 className="deleteH2">ALTERAÇÃO DE ALUNO</h2>
                 <div className="deleteContainer">
-                    <form className="deleteForm">  
+                    <form className="deleteForm">
                         <label className="deleteLabel">
                             Matricula
                             <input className="deleteInput" type="text" value={id} disabled />
                         </label>
                         <label className="deleteLabel">
                             Nome
-                            <input className="deleteInput" type="text" value={nome} disabled  />
+                            <input className="deleteInput" type="text" value={nome} disabled />
                         </label>
                         <label className="deleteLabel">
                             CPF
@@ -36,16 +36,16 @@ function Delete(){
                             <input className="deleteInput" type="number" value={avaliacao} disabled />
                         </label>
                         <Link to="/">
-                            <input className="deleteSubmit" type="submit" value="DELETAR" 
-                                onClick={deleteAluno}/>
+                            <input className="deleteSubmit" type="submit" value="DELETAR"
+                                onClick={deleteAluno} />
                         </Link>
-                        <Link to ="/">
+                        <Link to="/">
                             <button className="deleteButton"
-                                onClick={()=> setId(null)}> VOLTAR</button>
+                                onClick={() => setId(null)}> VOLTAR</button>
                         </Link>
                     </form>
                 </div>
-                   
+
             </div>
         </div>
     );

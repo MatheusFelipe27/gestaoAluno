@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { AlunoContext } from "../App";
 import './Home.css';
 
-function Home(){
-    const {alunos, setId, id} = useContext(AlunoContext)
+function Home() {
+    const { alunos, setId, id } = useContext(AlunoContext)
     console.log(alunos);
     //console.log(id)
-    return(
+    return (
         <div>
             <div>
                 <Link to="/registrar">
                     <button className="initialButton"> Novo</button>
-                </Link>    
+                </Link>
                 <button className="initialButton"> Gráfico</button>
             </div>
 
@@ -20,7 +20,7 @@ function Home(){
                 <h2 className="cad">
                     Alunos Cadastrados
                 </h2>
-                {alunos.length>0 && (
+                {alunos.length > 0 && (
                     <table className="table">
                         <thead>
                             <tr>
@@ -32,8 +32,8 @@ function Home(){
                             </tr>
                         </thead>
                         <tbody>
-                            {alunos.map((aluno, matricula) =>(
-                                <tr key={matricula}>
+                            {alunos.map((aluno) => (
+                                <tr key={aluno.matricula}>
                                     <td>{aluno.matricula}</td>
                                     <td>{aluno.nome}</td>
                                     <td>{aluno.cpf}</td>
@@ -41,19 +41,19 @@ function Home(){
                                     <td>
                                         <Link to="alterar">
                                             <button className="changeButton"
-                                            onClick={()=> setId(aluno.matricula)}> ALTERAR</button>
+                                                onClick={() => setId(aluno.matricula)}> ALTERAR</button>
                                         </Link>
-                                        <Link to ="deletar">
+                                        <Link to="deletar">
                                             <button className="deletedButton"
-                                            onClick={()=> setId(aluno.matricula)}>REMOVER</button>
-                                        </Link>    
+                                                onClick={() => setId(aluno.matricula)}>REMOVER</button>
+                                        </Link>
                                     </td>
                                 </tr>
-                            ))}    
+                            ))}
                         </tbody>
-                    </table> 
+                    </table>
                 )}
-            </div>    
+            </div>
         </div>
     );
 }

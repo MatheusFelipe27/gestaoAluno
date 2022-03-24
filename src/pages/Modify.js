@@ -1,92 +1,103 @@
-import {React, useContext, useState} from "react";
-import { Link } from "react-router-dom";
+import { React, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AlunoContext } from "../App";
 import './Modify.css'
 
-var modificarAluno = {
-    matricula: "",
-    nome: "",
-    cpf: "",
-    avaliacao: -1
-};
-
-function Modify(){
-    const {alunos, id, setId, setAlunos} = useContext(AlunoContext);
+function Modify() {
+    const { alunos, id, setId, setAlunos } = useContext(AlunoContext);
+    const navigate = useNavigate()
     //console.log(alunos[id-1].nome)
-    const{nome, cpf, avaliacao} = alunos.find(aluno => aluno.id=== id)
+    const { nome, cpf, avaliacao } = alunos.find(aluno => aluno.matricula === id)
     const [nomeAluno, setNomeAluno] = useState(nome);
-   // console.log(alunos[id-1].nome)
+    // console.log(alunos[id-1].nome)
     const [cpfAluno, setCpfAluno] = useState(cpf);
     const [avaliacaoAluno, setAvaliacaoAluno] = useState(avaliacao);
 
-    function checarTamanho(checarAqui){
-        checarAqui = false
+
+    function checarLetras(e) {
+        var erro = false
+        for (let i = 0; i < e.target.value.length; i++) {
+            if ((e.target.value[i] < 'A' || e.target.value[i] > 'Z') && (e.target.value[i] < 'a' || e.target.value[i] > 'z') && e.target.value[i] != ' ') erro = true
+        }
+        if (!erro) setNomeAluno(e.target.value)
+    }
+
+    function checarTamanho() {
+        let checarAqui = false
         console.log(checarAqui)
-        if(nomeAluno.length<6 || nomeAluno.length>40){
+        if (nomeAluno.length < 6 || nomeAluno.length > 40) {
             checarAqui = true
             console.log(checarAqui)
-        }     
-        else if( cpfAluno.length!==11){ 
+            alert("O nome precisa conter entre 6 e 40 caracteres");
+        }
+        else if (cpfAluno !== cpf && (cpfAluno.length !== 11 || alunos.find(aluno => aluno.cpf === cpfAluno))) {
             checarAqui = true
             console.log(checarAqui)
-        }    
-        else if(avaliacaoAluno<0 || avaliacaoAluno>10){
+            alert("CPF inválido ou já cadastrado")
+
+        }
+        else if (avaliacaoAluno == "" || +avaliacaoAluno < 0 || +avaliacaoAluno > 10) {
             checarAqui = true
             console.log(checarAqui)
-        }    
+            alert("Digite uma nota válida")
+
+        }
         console.log(nomeAluno)
         console.log(cpfAluno)
         console.log(avaliacaoAluno)
         console.log(checarAqui)
         return checarAqui
     }
-    
-    function modificarPosicao (){
+
+    function modificarPosicao() {
         var arrayModificado = alunos.map(aluno => aluno);
         console.log("entrei")
-        console.log(arrayModificado)
         var passou = false;
-        for(var i=0; i<arrayModificado.length; i++){
-            if(arrayModificado[i].matricula === id){
+        for (var i = 0; i < arrayModificado.length; i++) {
+            if (arrayModificado[i].matricula === id) {
+                const modificarAluno = {}
                 modificarAluno.matricula = `${id}`;
                 modificarAluno.nome = nomeAluno;
                 modificarAluno.cpf = cpfAluno;
                 modificarAluno.avaliacao = +avaliacaoAluno;
-                arrayModificado[i]= modificarAluno
-                passou=true
+                arrayModificado[i] = modificarAluno
+                passou = true
             }
-            if(passou) break
+            if (passou) break
         }
+        console.log("alunos: ", alunos)
+        console.log("arrModificado: ", arrayModificado)
         return arrayModificado
     }
 
-    const modificar = () =>{
-        var boolean = false
-        var condicao = checarTamanho(boolean)
+    const modificar = (e) => {
+        e.preventDefault()
+        var condicao = checarTamanho()
         console.log("estou em modificar")
-        if(!condicao){
+        if (!condicao) {
             setAlunos(modificarPosicao())
             setId(null);
             setNomeAluno("")
             setCpfAluno("")
             setAvaliacaoAluno(-1)
-        }     
+            navigate("/")
+        }
     }
 
-    return(
+    return (
         <div>
             <div className="modifyDiv">
                 <h2 className="modifyH2">ALTERAÇÃO DE ALUNO</h2>
                 <div className="modifyContainer">
-                    <form className="modifyForm">  
+                    <form className="modifyForm">
                         <label className="modifyLabel">
                             Matricula
                             <input className="modifyInput" type="text" value={id} disabled />
                         </label>
                         <label className="modifyLabel">
                             Nome
-                            <input className="modifyInput" type="text" value={nomeAluno} 
-                                onChange={(e)=> setNomeAluno(e.target.value)}/>
+                            <input className="modifyInput" type="text" value={nomeAluno}
+                                onChange={checarLetras} />
                         </label>
                         <label className="modifyLabel">
                             CPF
@@ -98,17 +109,15 @@ function Modify(){
                             <input className="modifyInput" type="number" value={avaliacaoAluno}
                                 onChange={(e) => setAvaliacaoAluno(e.target.value)} />
                         </label>
-                        <Link to="/">
                         <input className="modifySubmit" type="submit" value="ALTERAR"
-                            onClick={modificar} />
-                        </Link>
-                        <Link to ="/">
+                            onClick={(e) => modificar(e)} />
+                        <Link to="/">
                             <button className="modifyButton"
                                 onClick={() => setId(null)}> VOLTAR</button>
                         </Link>
                     </form>
                 </div>
-                   
+
             </div>
         </div>
     );
