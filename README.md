@@ -8,7 +8,8 @@ Matheus Felipe da Silva
 
 ## Como rodar
 
-```1° clonar o repositorio em sua máquina em um diretorio de sua escolha
+```
+1° clonar o repositorio em sua máquina em um diretorio de sua escolha
 2° abrir o terminal e ir até o projeto 
 3° executar o comando npm start
 ```
